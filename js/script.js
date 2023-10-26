@@ -34,6 +34,11 @@ let latitude = 50.63;
 
 let myAPIKey = "6f0d59dfcb080cd8495827d107606a39";
 let urlWeatherAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${myAPIKey}&units=metric&lang=fr`;
+/*
+Pour récupérer le tableau des 40 objets en JSON
+  https://api.openweathermap.org/data/2.5/forecast?lat=50.63&lon=5.56&appid=6f0d59dfcb080cd8495827d107606a39&units=metric&lang=fr
+
+*/
 
 // Variables optionnelles
 /*
@@ -54,6 +59,12 @@ Les informations sur les données renvoyées par l'API, y compris la structure d
 // pour accéder à l'ul id="weather-output"
 let weatherOutput = document.getElementById("weather-output");
 // console.log(weatherOutput); // <ul id="weather-out"></ul>
+/*
+  <template id="myTemplate">
+      <p>Template content</p>
+    </template>
+
+*/
 
 /*
 Utilisez la fonction fetch() pour effectuer une requête à l'API OpenWeatherMap en utilisant l'URL weatherUrl.
@@ -92,16 +103,26 @@ fetch("l-url-de-mon-api", {method: "GET"})
 */
 
 // Méthode FETCH : https://stackoverflow.com/questions/38235715/fetch-reject-promise-and-catch-the-error-if-status-is-not-ok
+// Grâce au response.json() je vais pouvoir récupérer et afficher les données de l'objet
 fetch(urlWeatherAPI)
 .then((response) => {
       return response.json();
   })
   .then((responseJson) => {
     const list = responseJson.list[0];
+
+    let date = list.dt_txt;
     let temperature = list.main.temp;
+    let icon = list.weather[0].icon;
+    let temps_description = list.weather[0].description;
+    let humidite = list.main.humidity;
+
+    console.log(date);
+    console.log(temps_description);
+    console.log(icon);
     console.log(temperature); // 11.23 je récupère bien la température de mon premier élément YES
-    let temps = list.weather[0].description;
-    console.log(temps);
+    console.log(humidite);
+
   })
   .catch((error) => {
     console.log(error);
