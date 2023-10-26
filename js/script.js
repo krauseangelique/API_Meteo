@@ -13,9 +13,11 @@ const weatherOutput = document.getElementById('weatherOutput');
 
 // Grâce au response.json() je vais pouvoir récupérer et afficher les données de l'objet
 fetch(urlWeatherAPI)
+
   .then((response) => {
     return response.json();
   })
+
   .then((responseJson) => {
     const list = responseJson.list[0];
 
@@ -25,20 +27,39 @@ fetch(urlWeatherAPI)
     let tempsDescription = list.weather[0].description;
     let humidite = list.main.humidity;
 
+    console.log(date);
+    // modification de l'apparence de la date
+    const jour = date.split(' ');
+    console.log(jour[0]); // me donne le jour 
+    /*
+    const maDate = new Date()
+
+maDate.toLocaleDateString("fr") // 20/10/2021
+    */ 
+
+    
+    const heure = date.split(' ');
+    console.log(heure[1]); // me donne l'heure
+
+    // Récupération de l'icone du temps
     let imageIcon = `https://openweathermap.org/img/wn/${icon}.png`;
 
-    console.log(date);
+    
     console.log(tempsDescription);
     console.log(icon);
     console.log(temperature); // 11.23 je récupère bien la température de mon premier élément YES
     console.log(humidite);
-    let clonedTemplate = weatherTemplate.content.cloneNode(true);
-    clonedTemplate.querySelector('.date').innerHTML = `${date}`;
-    //clonedTemplate.querySelector('.descriptrion').innerHTML = "cucu";
 
+    // innerHTML
+    let clonedTemplate = weatherTemplate.content.cloneNode(true);
+
+    clonedTemplate.querySelector('.jour').innerHTML = `${jour[0]}`;
+    clonedTemplate.querySelector('.heure').innerHTML = `${heure[1]}`;
+    //clonedTemplate.querySelector('.descriptrion').innerHTML = "cOucOu";
     clonedTemplate.querySelector('.description').innerHTML = `${tempsDescription}`;
 
-    clonedTemplate.querySelector('.imageIcon').innerHTML = `${imageIcon}`;
+    // !!! la source de l'image ce n'est pas innerHTML mais src
+    clonedTemplate.querySelector('.imageIcon').src = `${imageIcon}`;
 
     clonedTemplate.querySelector('.temperature').innerHTML = `${temperature}`;
     clonedTemplate.querySelector('.humidite').innerHTML = `${humidite}`;
@@ -47,6 +68,7 @@ fetch(urlWeatherAPI)
     weatherOutput.appendChild(clonedTemplate);
 
   })
+
   .catch((error) => {
     console.log(error);
   });
