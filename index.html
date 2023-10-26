@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <title>API Meteo</title>
 </head>
+
 <body>
-     <!-- JavaScript function clones the template and adds it to the document. -->
+    <!-- JavaScript function clones the template and adds it to the document. -->
     <template id="weatherTemplate">
         <!-- The <template> is used to store HTML code fragments, which can be cloned and inserted in an HTML document.
             The content of the tag is hidden from users being stored on the client-side. It is inert until activated using JavaScript. -->
@@ -16,36 +18,37 @@
             <h2>Prévisions</h2>
             <p class="date"></p>
             <p class="description"></p>
-            <p class="imageIcon">
-                <img src="" alt="" class="icon">
+            <p class="pIcon">
+                <img src="" alt="" class="imageIcon">
             </p>
             <p class="temperature"></p>
             <p class="humidite"></p>
         </li>
-        
-        
+
+
 
     </template>
-   <main>
-    <h1>Meteo</h1>
-    <!-- ul est le point d'injection -->
-    <ul id="weatherOutput">
-        <p>C'est ici : </p>
-        
+    <main>
+        <h1>Meteo</h1>
+        <!-- ul est le point d'injection -->
+        <ul id="weatherOutput">
+            <p>C'est ici : </p>
 
-    </ul>
-    <!--
+
+        </ul>
+        <!--
         Créez un modèle HTML en utilisant la balise <template> avec un identifiant unique, par exemple, id="weather-template". À l'intérieur du modèle, créez une liste (<ul>) avec un identifiant id="weather-output".
 
         
             Dans le <body>, créez un en-tête (<main>) avec un titre <h1> indiquant par exemple "Upcoming Weather".
     -->
-    
-    
-    
-   </main>
-    
-    
+
+
+
+    </main>
+
+
     <script src="./js/script.js"></script>
 </body>
+
 </html>
