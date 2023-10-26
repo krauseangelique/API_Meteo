@@ -8,13 +8,19 @@
 </head>
 <body>
      <!-- JavaScript function clones the template and adds it to the document. -->
-    <template id="weather-template">
+    <template id="weatherTemplate">
         <!-- The <template> is used to store HTML code fragments, which can be cloned and inserted in an HTML document.
             The content of the tag is hidden from users being stored on the client-side. It is inert until activated using JavaScript. -->
 
         <li>
-            <p class="jourSemaine"></p>
-            
+            <h2>Prévisions</h2>
+            <p class="date"></p>
+            <p class="description"></p>
+            <p class="imageIcon">
+                <img src="" alt="" class="icon">
+            </p>
+            <p class="temperature"></p>
+            <p class="humidite"></p>
         </li>
         
         
@@ -23,7 +29,8 @@
    <main>
     <h1>Meteo</h1>
     <!-- ul est le point d'injection -->
-    <ul id="weather-output">
+    <ul id="weatherOutput">
+        <p>C'est ici : </p>
         
 
     </ul>

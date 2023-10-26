@@ -2,3 +2,8 @@ body{
     background-color:azure;
     color: rgb(3, 6, 24);
 }
+li{
+    height: 250px;
+    width: 190px;
+    border: 1px solid rgb(3, 6, 24);
+}
