@@ -2,9 +2,25 @@ body{
     background-color:azure;
     color: rgb(3, 6, 24);
 }
+ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 li{
-    height: 300px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 255, 234, 0.4);
+    text-decoration: none;
+    height: 500px;
     width: 190px;
     border: 1px solid rgb(3, 6, 24);
+    border-radius: 10px;
+    box-shadow: 4px 3px 10px rgb(0, 166, 255);
+    margin-right: 20px;
+    margin-bottom: 20px;
     padding-left: 10px;
+    text-align: center;
+    
+    
 }

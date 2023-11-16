@@ -1,12 +1,16 @@
 console.log("Hello");
+
+/* requête météo */
 // API Meteo
-// variables d'environnement
+// variables d'environnement :
+// coordonnées géographiques
 let longitude = 5.56;
 let latitude = 50.63;
 // let ville = "Liège";
 
 const myAPIKey = "6f0d59dfcb080cd8495827d107606a39";
 const urlWeatherAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${myAPIKey}&units=metric&lang=fr`;
+
 
 const weatherTemplate = document.getElementById('weatherTemplate');
 const weatherOutput = document.getElementById('weatherOutput');
@@ -19,23 +23,49 @@ fetch(urlWeatherAPI)
   })
 
   .then((responseJson) => {
-    const list = responseJson.list[0];
+    // const list = responseJson.list[0];
 
-    let date = list.dt_txt;
-    let temperature = list.main.temp;
-    let icon = list.weather[0].icon;
-    let tempsDescription = list.weather[0].description;
-    let humidite = list.main.humidity;
+    responseJson.list.forEach(element => {
+
+     console.log(element);
+     /* Unités de mesure disponible : température en Celsius */
+
+    let date = element.dt_txt;
+    let temperature = element.main.temp;
+    let icon = element.weather[0].icon;
+    let tempsDescription = element.weather[0].description;
+    let humidite = element.main.humidity;
 
     console.log(date);
-    // modification de l'apparence de la date
-    const jour = date.split(' ');
-    console.log(jour[0]); // me donne le jour 
-    /*
-    const maDate = new Date()
 
-maDate.toLocaleDateString("fr") // 20/10/2021
-    */ 
+    const options = {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      timeZone: 'UTC+01:00',
+      timeZoneName: 'short'
+    };
+
+  
+
+     
+    
+    const maDate = new Date();
+    console.log(maDate);
+    let dateLocale = maDate.toLocaleDateString("fr") // 20/10/2021
+     
+    console.log(dateLocale);
+
+
+    // modification de l'apparence de la date
+    const jour = dateLocale.split(' ');
+   
+    
+    console.log(jour[0]); // me donne le jour
 
     
     const heure = date.split(' ');
@@ -47,7 +77,7 @@ maDate.toLocaleDateString("fr") // 20/10/2021
     
     console.log(tempsDescription);
     console.log(icon);
-    console.log(temperature); // 11.23 je récupère bien la température de mon premier élément YES
+    console.log(temperature); // 11.23 je récupère bien la température de mon premier élément, YES
     console.log(humidite);
 
     // innerHTML
@@ -66,7 +96,8 @@ maDate.toLocaleDateString("fr") // 20/10/2021
 
     // appendChild
     weatherOutput.appendChild(clonedTemplate);
-
+    });
+   
   })
 
   .catch((error) => {
